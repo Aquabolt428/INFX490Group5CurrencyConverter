@@ -8,40 +8,53 @@
 
 <body>
 
-    <div> <!--Div for image/logo-->
+    <div> <!--This div is for nav bar-->
+
+    </div>
+
+    <div > <!--Div for image/logo-->
     <img src="Currency_Crawfish.jpg" class="img-fluid" alt="Crawfish with money" style="width: 250px; height: 250px;">
     </div>
 
     <h1 class="text-center">Cajun Currency Converter</h1>
 
-    <div name="converter" class="container"> <!--this div is for the entire converter(input, country select, and output)-->
-        <div name="input-textbox" class="text-center"> <!--this div is for the amount to convert-->
+    <div name="converter" class="container mx-auto p-2"> <!--this div is for the entire converter(input, country select, and output)-->
+
+        <div name="input-textbox" class="text-center"> <!--this div is for the amount to convert, need to validate input to number(possibly change input type to number and only allow whole numbers)-->
             Input amount:
             <input type="text" name="input-amount" placeholder="0.00">
         </div>
-        <div> <!--this div is for the selection of the currency to convert from-->
+
+        <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert from-->
             From Country/Currency:
             <select name="country_currency" class="form-select" id="input_country_currency">
-                <option>Select Country/Currency</option>
+                <option>Select Country/Currency</option><!--need to populate with array-->
             </select>
         </div>
-        <div> <!--this div is for the selection of the currency to convert to-->
+
+        <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert to-->
             To Country/Currency:
             <select name="country_currency" class="form-select" id="output_country_currency">
                 <option>Select Country/Currency</option>
             </select>
         </div>
 
-        <button class="btn btn-primary" type="submit">
-            Convert
-        </button>
+        <div class="d-grid gap-2 col-6 mx-auto p-3"><!--div for convert button-->
 
-        <button class="btn btn-primary" onclick="clearVal()">
-            Reset 
-        </button>
+        <input class="btn btn-danger btn-lg" type="submit" value="Convert"> <!--btn-danger is to make button red--></input>
 
-        <div class="text-center">
+        </div>
+
+        <div class="text-center mx-auto p-5"><!--div to display converted amount, users cannot enter values-->
             Converted Amount:
+            <input type="text" name="output-textbox" placeholder="0.00" disabled>
+        </div>
+        
+
+        <div class="d-grid gap-2 col-6 mx-auto p-3">
+            <button class="btn btn-danger btn-lg" onclick="//add needed command here to save"> <!--btn-danger is to make button red-->
+                Save 
+            </button>
         </div>
 
 
