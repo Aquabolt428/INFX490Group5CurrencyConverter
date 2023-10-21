@@ -1,0 +1,23 @@
+label{
+    display: block;
+    margin-top: 1em;
+    margin-bottom: .5em;
+}
+
+fieldset{
+    border-radius: 3px;
+    border-color: aqua;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+button{
+    display: block;
+    margin-top: 1em;
+}
