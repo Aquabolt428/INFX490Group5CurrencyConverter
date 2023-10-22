@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+</head>
+<body>
+
+    <form>
+        <div>
+            <label for="currencyChoice">Choose Currency</label>
+            <input type="text" name="currencyChoice" id="currencyName">
+        </div>
+        <div>
+            <label for="leavingDate">Choose Date</label>
+            <input type="date" id="date" name="leavingDate">
+        </div>
+        <button onclick="predict()">Check Future</button>
+    </form>
+
+    <div style="width: 900px; height: 400px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        // Declare your data and chart variables outside the predict function
+        let labels = [];
+        let itemData = [];
+        const data = {
+            labels: labels,
+            datasets: [{
+                data: itemData,
+                borderColor: 'rgb(0,0,0)',
+                hoverBorderColor: 'red'
+            }]
+        };
+
+        let config = {
+            type: 'line',
+            data: data,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Past Trends'
+                    }
+                }
+            }
+        };
+
+        const chart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        async function predict() {
+            const currencyName = document.getElementById('currencyName').value.trim();
+            const date = document.getElementById('date').value.trim();
+
+            console.log("Currency Name: " + currencyName);
+            console.log("Date: " + date);
+
+            const responseData = getData(currencyName);            
+        }
+
+        // Decide when to call getData (on page load, button click, etc.)
+        // getData() should be called with the appropriate argument.
+
+        async function getData(currencyName){
+            //await will need try catches
+            const url = "http://localhost:3030/getFuture";
+            //correct
+            const urlPar = "countryName=" + currencyName;
+            const response = await fetch(url + "?" + urlPar);
+            console.log(response)
+            const jsonPast = await response.json();
+
+            console.log(jsonPast)
+            return jsonPast;
+        }
+    </script>
+</body>
+</html>
