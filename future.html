@@ -62,24 +62,35 @@
             console.log("Currency Name: " + currencyName);
             console.log("Date: " + date);
 
-            const responseData = getData(currencyName);            
+            const responseData =  await getData(currencyName);            
         }
 
         // Decide when to call getData (on page load, button click, etc.)
         // getData() should be called with the appropriate argument.
 
-        async function getData(currencyName){
-            //await will need try catches
-            const url = "http://localhost:3030/getFuture";
-            //correct
-            const urlPar = "countryName=" + currencyName;
-            const response = await fetch(url + "?" + urlPar);
-            console.log(response)
-            const jsonPast = await response.json();
+        async function getData(currencyName) {
+    const url = "http://localhost:3030/getFuture";
+    const urlPar = "countryName=" + currencyName;
+    const thingToPutIn = url + "?" + urlPar;
+    console.log(thingToPutIn);
 
-            console.log(jsonPast)
+    try {
+        const response = await fetch(thingToPutIn);
+
+        if (response.ok) {
+            const jsonPast = await response.json();
+            console.log("Response data:", jsonPast);
             return jsonPast;
+        } else {
+            console.error("Request failed with status: " + response.status);
+            return null; // Handle the error as needed.
         }
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return null; // Handle the error as needed.
+    }
+}
+
     </script>
 </body>
 </html>
