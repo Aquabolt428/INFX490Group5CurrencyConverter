@@ -5,7 +5,7 @@
 </head>
 <body>
 
-    <form>
+    <form onsubmit="predict(); return false;">
         <div>
             <label for="currencyChoice">Choose Currency</label>
             <input type="text" name="currencyChoice" id="currencyName">
@@ -14,7 +14,7 @@
             <label for="leavingDate">Choose Date</label>
             <input type="date" id="date" name="leavingDate">
         </div>
-        <button onclick="predict()">Check Future</button>
+        <button >Check Future</button>
     </form>
 
     <div style="width: 900px; height: 400px;">
@@ -89,6 +89,7 @@
         console.error("Fetch error:", error);
         return null; // Handle the error as needed.
     }
+    return false;
 }
 
     </script>
