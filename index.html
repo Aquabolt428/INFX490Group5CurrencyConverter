@@ -6,7 +6,10 @@
     <title>Cajun Currency Converter</title>
 </head>
 
-<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<body onload="popDropdown()">
+
 
     <div> <!--This div is for nav bar-->
 
@@ -27,15 +30,15 @@
 
         <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert from-->
             From Country/Currency:
-            <select name="country_currency" class="form-select" id="input_country_currency">
-                <option>Select Country/Currency</option><!--need to populate with array-->
+            <select name="country_currency" class="form-select" id="dropdown">
+                <!--<option>Select Country/Currency</option>    need to populate with array-->
             </select>
         </div>
 
         <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert to-->
             To Country/Currency:
-            <select name="country_currency" class="form-select" id="output_country_currency">
-                <option>Select Country/Currency</option>
+            <select name="country_currency" class="form-select" id="dropdown">
+                <!--<option>Select Country/Currency</option>    need to populate with array-->
             </select>
         </div>
 
@@ -48,6 +51,12 @@
         <div class="text-center mx-auto p-5"><!--div to display converted amount, users cannot enter values-->
             Converted Amount:
             <input type="text" name="output-textbox" placeholder="0.00" disabled>
+        </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto p-3">
+            <button class="btn btn-danger btn-lg" onclick="//add needed command here to clear converter"> <!--btn-danger is to make button red-->
+                Clear 
+            </button>
         </div>
         
 
@@ -64,7 +73,24 @@
 
 
 <!--Add javascript functions under here-->
-    <script></script>
+    <script>
+    //Populate dropdowns with countries/currency
+    let select = document.getElementById('dropdown');
+    let elmts = ["US Dollar", "UK Pound", "EU Euro"] //make this array be populated from api
+
+    //function to populate dropdowns
+    function popDropdown() {
+        $.each(elmts, function (i, p){
+            $('#dropdown').append($('<option></option>').val(p).html(p));
+        });
+    } //only populating one dropdown
+
+    
+
+
+
+
+    </script>
 
 
 
