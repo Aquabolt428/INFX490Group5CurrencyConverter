@@ -2,7 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Section to add links for libraries used-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
+    
+
     <title>Cajun Currency Converter</title>
 </head>
 
@@ -30,21 +34,21 @@
 
         <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert from-->
             From Country/Currency:
-            <select name="country_currency" class="form-select" id="dropdown">
-                <!--<option>Select Country/Currency</option>    need to populate with array-->
+            <select name="country_currency" class="form-select" id="input_dropdown">
+                <!--<option>Select Country/Currency</option>    need to populate with array-->    
             </select>
         </div>
 
         <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert to-->
             To Country/Currency:
-            <select name="country_currency" class="form-select" id="dropdown">
+            <select name="country_currency" class="form-select" id="output_dropdown" >
                 <!--<option>Select Country/Currency</option>    need to populate with array-->
             </select>
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto p-3"><!--div for convert button-->
 
-        <input class="btn btn-danger btn-lg" type="submit" value="Convert"> <!--btn-danger is to make button red--></input>
+        <input class="btn btn-danger btn-lg" type="submit" value="Convert" onclick="conversion()"> <!--btn-danger is to make button red--></input>
 
         </div>
 
@@ -75,17 +79,44 @@
 <!--Add javascript functions under here-->
     <script>
     //Populate dropdowns with countries/currency
-    let select = document.getElementById('dropdown');
-    let elmts = ["US Dollar", "UK Pound", "EU Euro"] //make this array be populated from api
+    //let select = document.getElementById('dropdown');  not needed for populating dropdowns
+    let elmts = ["US Dollar", "UK Pound", "EU Euro", "JP Yen"] //make this array be populated from api
 
-    //function to populate dropdowns
-    function popDropdown() {
+    //functions to populate dropdowns
+    function popInputDropdown() {
         $.each(elmts, function (i, p){
-            $('#dropdown').append($('<option></option>').val(p).html(p));
+            $('#input_dropdown').append($('<option></option>').val(p).html(p));
         });
-    } //only populating one dropdown
+    } 
 
-    
+    function popOutputDropdown() {
+        $.each(elmts, function (i, p){
+            $('#output_dropdown').append($('<option></option>').val(p).html(p));
+        });
+    } 
+
+    //trying to implement search for dropdown, this method didn't work, more research needed
+//   var search_dropdown = document.querySelector('#country_currency');
+//    dselect(search_dropdown, {
+//       search: true
+//    });
+
+    //function to call both functions to populate dropdowns on page load
+    function popDropdown() {
+        popInputDropdown();
+        popOutputDropdown();
+    }
+
+    //add function to do conversion by getting input_amount and the selctions from dropdowns,
+    //need to either receive from backend or get conversion rate from api call on front end and do calculation here
+    let inputCurr = document.getElementById('input_dropdown');
+    let outputCurr = document.getElementById('output_dropdown');
+
+    function conversion() {
+
+
+    }
+
 
 
 
@@ -100,5 +131,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
 </body>
 </html>
