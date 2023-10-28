@@ -25,7 +25,7 @@
 
         <div name="input-textbox" class="text-center"> <!--this div is for the amount to convert, need to validate input to number(possibly change input type to number and only allow whole numbers)-->
             Input amount:
-            <input type="text" name="input-amount" placeholder="0.00">
+            <input type="number" name="input-amount" step="0.01" placeholder="0.00" id="numToCon">
         </div>
 
         <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert from-->
@@ -44,17 +44,17 @@
 
         <div class="d-grid gap-2 col-6 mx-auto p-3"><!--div for convert button-->
 
-        <input class="btn btn-danger btn-lg" type="submit" value="Convert"> <!--btn-danger is to make button red--></input>
+        <input class="btn btn-danger btn-lg" type="submit" value="Convert" onclick="gettingExchange(); return false;"> <!--btn-danger is to make button red--></input>
 
         </div>
 
         <div class="text-center mx-auto p-5"><!--div to display converted amount, users cannot enter values-->
             Converted Amount:
-            <input type="text" name="output-textbox" placeholder="0.00" disabled>
+            <input type="text" name="output-textbox" placeholder="0.00" id="convertedBox" disabled>
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto p-3">
-            <button class="btn btn-danger btn-lg" onclick="//add needed command here to clear converter"> <!--btn-danger is to make button red-->
+            <button class="btn btn-danger btn-lg" onclick="gettingExchange();"> <!--btn-danger is to make button red-->
                 Clear 
             </button>
         </div>
@@ -114,6 +114,37 @@
 
 
     } //only populating one dropdown
+
+    async function gettingExchange(){
+        sessionStorage.setItem('id', 6);
+        const id = sessionStorage.getItem('id');
+        const valueToConvert = document.getElementById('numToCon').value; 
+
+        const convertedBox = document.getElementById('convertedBox');
+
+        const dropdown2 = document.getElementById("dropdown2");
+
+        // Get the value of the selected option
+        const selectedValue = dropdown2.value;
+
+        const url = "http://localhost:3030/exchangeRates?";
+        const finalURL = url +'currencies='+ valueToConvert + '&countries=' + selectedValue + '&id='+ id;
+        console.log(finalURL.trim());
+        console.log('http://localhost:3030/exchangeRates?currencies=123&countries=Afghanistan-Afghani&id=6')
+
+        const response = await fetch(finalURL.trim());
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+          const data = await response.json();
+          const newMoneyValue = data[selectedValue].newMoney;
+          convertedBox.value = newMoneyValue;
+    
+    // Handle the JSON data here
+    console.log(data);
+    }
 
     
 
