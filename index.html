@@ -8,7 +8,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<body onload="popDropdown()">
+<body onload="popDropdown(); return false">
 
 
     <div> <!--This div is for nav bar-->
@@ -30,14 +30,14 @@
 
         <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert from-->
             From Country/Currency:
-            <select name="country_currency" class="form-select" id="dropdown">
+            <select name="country_currency" class="form-select" id="dropdown1">
                 <!--<option>Select Country/Currency</option>    need to populate with array-->
             </select>
         </div>
 
         <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert to-->
             To Country/Currency:
-            <select name="country_currency" class="form-select" id="dropdown">
+            <select name="country_currency" class="form-select" id="dropdown2">
                 <!--<option>Select Country/Currency</option>    need to populate with array-->
             </select>
         </div>
@@ -75,14 +75,44 @@
 <!--Add javascript functions under here-->
     <script>
     //Populate dropdowns with countries/currency
-    let select = document.getElementById('dropdown');
-    let elmts = ["US Dollar", "UK Pound", "EU Euro"] //make this array be populated from api
+    const selectD1 = document.getElementById('dropdown1');
+    const selectD2 = document.getElementById('dropdown2');
+
+    async function fillList(){
+    // Replace this URL with the actual API endpoint
+    const apiUrl = 'http://localhost:3030/apiCallGettingCurrency';
+    try {
+        const response = await fetch(apiUrl);
+        if (response.ok) {
+            const data = await response.json();
+            const countryNames = data.data.map(item => item.country_currency_desc);
+            return countryNames; // Assuming the API returns an array of elements
+        } else {
+            throw new Error('Failed to fetch data from the API');
+        }
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+       
+
+     //make this array be populated from api
 
     //function to populate dropdowns
-    function popDropdown() {
+    async function popDropdown() {
+        const elmts = await fillList();
+    
+
         $.each(elmts, function (i, p){
-            $('#dropdown').append($('<option></option>').val(p).html(p));
+            $('#dropdown1').append($('<option></option>').val(p).html(p));
         });
+
+        $.each(elmts, function (i, p){
+            $('#dropdown2').append($('<option></option>').val(p).html(p));
+        });
+
+
     } //only populating one dropdown
 
     
