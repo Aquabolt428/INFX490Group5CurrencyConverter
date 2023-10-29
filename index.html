@@ -25,13 +25,13 @@
 
         <div name="input-textbox" class="text-center"> <!--this div is for the amount to convert, need to validate input to number(possibly change input type to number and only allow whole numbers)-->
             Input amount:
-            <input type="number" name="input-amount" step="0.01" placeholder="0.00" id="numToCon" min="0.00">
+            <input type="number" name="input-amount" step="0.01" placeholder="0.00" id="numToCon">
         </div>
 
         <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert from-->
             From Country/Currency:
-            <select name="country_currency" class="form-select" id="dropdown1">
-                <!--<option>Select Country/Currency</option>    need to populate with array-->
+            <select name="country_currency" class="form-select" id="dropdown1" disabled>
+                <option>UNITED STATES-DOLLAR</option>    <!--need to populate with array-->
             </select>
         </div>
 
