@@ -102,6 +102,14 @@
     //function to populate dropdowns
     async function popDropdown() {
         const elmts = await fillList();
+
+
+        const US = ["US Dollar"];
+
+// Populate the dropdown with the single option
+        $('#dropdown1').append($('<option></option>').val('').html(US));
+        $('#dropdown2').append($('<option></option>').val('').html(US));
+        
     
 
         $.each(elmts, function (i, p){
