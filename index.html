@@ -130,8 +130,7 @@
         const url = "http://localhost:3030/exchangeRates?";
         const finalURL = url +'currencies='+ valueToConvert + '&countries=' + selectedValue + '&id='+ id;
         console.log(finalURL.trim());
-        console.log('http://localhost:3030/exchangeRates?currencies=123&countries=Afghanistan-Afghani&id=6')
-
+    
         const response = await fetch(finalURL.trim());
 
         if (!response.ok) {

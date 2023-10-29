@@ -51,8 +51,42 @@
 <script type="text/javascript">
 
     //send to backend and check for loggin
-    function menuBut(){
-        location.href = "MenuPage.html";
+    async function menuBut(){
+        try {
+            const userName = document.getElementById('login-username').value;
+            const passwordAttempt= document.getElementById('login-password').value;
+            console.log(userName + " " + passwordAttempt);
+
+            // Create a data object with the userName and passwordAttempt
+            const data = {
+            userName: userName,
+            passwordAttempt: passwordAttempt,
+            };
+
+            // Define the URL of the login endpoint
+            const url = 'http://localhost:3030/login';
+
+            // Send a POST request
+            const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Set the content type to JSON
+            },
+            body: JSON.stringify(data), // Convert data to JSON format
+            });
+
+            if (response.ok) {
+            const responseData = await response.json(); // Parse the JSON response
+            // Handle the response data here
+            location.href = "index.html";
+            console.log(responseData);
+            } else {
+            throw new Error('Login failed'); // Handle the error as needed
+            }
+        } catch (error) {
+            console.error(error); // Handle any errors
+        
+        }
     }
 
     //send them to the sign up page 
