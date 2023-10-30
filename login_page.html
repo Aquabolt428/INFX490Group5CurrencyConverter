@@ -7,7 +7,7 @@
     <title>Cajun Currency Converter Login</title>
 </head>
 
-<body>
+<body >
 
     <div> <!--This div is for nav bar-->
 
@@ -29,7 +29,7 @@
             <label for="login-password">Password</label>
             <input type="password" id="login-password" placeholder="Password">
         </div>
-        <button class="btn btn-danger btn-lg" onclick="menuBut()">
+        <button class="btn btn-danger btn-lg" onclick="menuBut(); return false;">
             Login
         </button>
 
@@ -75,13 +75,18 @@
             body: JSON.stringify(data), // Convert data to JSON format
             });
 
+            console.log(response)
+
             if (response.ok) {
             const responseData = await response.json(); // Parse the JSON response
             // Handle the response data here
-            location.href = "index.html";
-            console.log(responseData);
+            alert(responseData.message)
+            sessionStorage.setItem('id', responseData.id);
+            window.location.href = 'index.html';
             } else {
+            alert("Login Failed");
             throw new Error('Login failed'); // Handle the error as needed
+            
             }
         } catch (error) {
             console.error(error); // Handle any errors
