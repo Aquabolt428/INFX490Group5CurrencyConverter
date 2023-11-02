@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <!--This is where you can import the chart using a link and not npm if you choose to do so-->
+    </header>
+    <body>
+        <button onclick="makingChaart(); return false;">Blick me</button>
+        <div id="chartArea"></div>
+    </body>
+</html>
+
+<script type="text/javascript">
+    //here is where you would do your java script chats
+    async function makingChaart(){
+        try {
+    const response = await fetch('http://localhost:3030/getFuture?countryName=Albania-Lek');
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json(); // Assuming the response is in JSON format
+    // Handle the data in the response
+    //this is the data for it
+    console.log(data);
+  } catch (error) {
+    // Handle any errors that occurred during the fetch
+    console.error('Fetch error:', error);
+  }
+    }
+
+</script>
