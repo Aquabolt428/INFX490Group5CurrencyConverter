@@ -79,6 +79,16 @@
     const selectD2 = document.getElementById('dropdown2');
 
     async function fillList(){
+        // Check if the sessionStorage variable exists
+        if (sessionStorage.getItem('id') === null) {
+        // If it doesn't exist, set it to a default value
+        sessionStorage.setItem('id', 0);
+    }
+
+// Now you can access the value, which is either the existing value or the default value
+var myValue = sessionStorage.getItem('id');
+console.log(myValue);
+
     // Replace this URL with the actual API endpoint
     const apiUrl = 'http://localhost:3030/apiCallGettingCurrency';
     try {
@@ -128,6 +138,7 @@
         const valueToConvert = document.getElementById('numToCon').value; 
 
         const convertedBox = document.getElementById('convertedBox');
+
 
         const dropdown2 = document.getElementById("dropdown2");
 
