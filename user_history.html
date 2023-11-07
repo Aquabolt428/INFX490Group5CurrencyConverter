@@ -110,18 +110,18 @@
      // Check if the sessionStorage variable exists
      if (sessionStorage.getItem('id') === null) {
         // If it doesn't exist, set it to a default value
-        sessionStorage.setItem('id', 7);
+        sessionStorage.setItem('id', 0);
     }else{
     var userID = sessionStorage.getItem('id');
     console.log(userID);
     }
     var userID = sessionStorage.getItem('id');
 
-    //if(myValue === 0){
-      //alert("Please Login or Make an Acount")
-      //window.location.href = 'login_page.html';
-    //}else{
-      //try{
+    if(userID == 0){
+      alert("Please Login or Make an Acount")
+      window.location.href = 'login_page.html';
+    }else{
+      try{
       const url = "http://localhost:3030/gettingHistory?"
       const id = userID; 
       const finalURL = url + "id=" + userID
@@ -170,14 +170,16 @@
 
 
       }
+    
 
 
 
-      //}catch{
-      //  console.log("FUCK")
-      //}
+      }catch{
+       console.log("FUCK")
+      }
     }
+  }
 
-  //}
+  
 
 </script>
