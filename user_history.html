@@ -12,6 +12,42 @@
 
     <div> <!--This div is for nav bar-->
 
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html">Cajun Currency Converter</a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i class="fas fa-bars"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Converter</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="create_login.html">Create Account</a> <!--disabled for now-->
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="login_page.html">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="user_history.html">User History</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Historical Currency Trends</a> <!--add link to charts when created-->
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
     </div>
 
     <div > <!--Div for image/logo-->
@@ -19,6 +55,8 @@
     </div>
 
     <h1 class="text-center">Cajun Currency Converter: User History</h1>
+
+    <!--Add feature to redirect to login page if no account logged in-->
 
 
     <div> <!--be able to pull from database and us js to build multiple html elements to display-->
