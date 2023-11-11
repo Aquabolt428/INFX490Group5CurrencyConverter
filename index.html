@@ -135,7 +135,10 @@
         if (response.ok) {
             const data = await response.json();
             const countryNames = data.data.map(item => item.country_currency_desc);
-            return countryNames; // Assuming the API returns an array of elements
+            const currencyNames = data.data.map(item => item.currency);
+            
+
+            return [countryNames, currencyNames]; // Assuming the API returns an array of elements
         } else {
             throw new Error('Failed to fetch data from the API');
         }
@@ -150,7 +153,10 @@
 
     //function to populate dropdowns
     async function popDropdown() {
-        const elmts = await fillList();
+        const countryCurrencyLists = await fillList();
+
+        var elmts = countryCurrencyLists[0]
+        var elmtsCur = countryCurrencyLists[1]
 
 
         const US = ["UNITED STATES-DOLLAR"];
@@ -162,11 +168,11 @@
     
 
         $.each(elmts, function (i, p){
-            $('#dropdown1').append($('<option></option>').val(p).html(p));
+            $('#dropdown1').append($('<option></option>').val(elmtsCur[i]).html(p));
         });
 
         $.each(elmts, function (i, p){
-            $('#dropdown2').append($('<option></option>').val(p).html(p));
+            $('#dropdown2').append($('<option></option>').val(elmtsCur[i]).html(p));
         });
         
         $(document).ready(function() {
