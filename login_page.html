@@ -7,49 +7,49 @@
     <title>Login</title>
 </head>
 
-<body >
+<body class="bg-light-subtle">
 
     
 
-    <div> <!--This div is for nav bar-->
+  <div> <!--This div is for nav bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="container-fluid">
+          <a class="navbar-brand text-dark" href="index.html">Cajun Currency Converter</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link text-dark"  href="index.html">Converter</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="create_login.html">Create Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="login_page.html">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="user_history.html">User History</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="hist_chart.html">Historical Currency Trends</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="index.html">Cajun Currency Converter</a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <i class="fas fa-bars"></i>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Converter</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="create_login.html">Create Account</a> <!--disabled for now-->
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="login_page.html">Login</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="user_history.html">User History</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="hist_chart.html">Historical Currency Trends</a> <!--add link to charts when created-->
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
 
-    </div>
+</div>
 
     <div > <!--Div for image/logo-->
         <img src="Currency_Crawfish.png" class="img-fluid" alt="Crawfish with money" style="width: 250px; height: 250px;">
@@ -72,7 +72,7 @@
         </button>
 
         <button class="btn btn-danger btn-lg" onclick="signBut(); return false;">
-             Sign Up
+             Sign Up 
         </button>
         <!--reword the about us section-->
         <p>To find out more about us, click <a href="aboutUs.html">here</a></p>
@@ -133,7 +133,7 @@
 
     //send them to the sign up page 
     function signBut(){
-        location.href = "SignUpPage.html";
+        location.href = "creat_login.html";
     }
 
     
