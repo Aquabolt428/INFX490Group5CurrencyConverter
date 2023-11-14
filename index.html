@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="login_page_style.css" rel="stylesheet">
     <title>Cajun Currency Converter</title>
 </head>
 
@@ -14,11 +15,12 @@
 <body onload="popDropdown(); return false" class="bg-light-subtle">
 
 
-    <div> <!--This div is for nav bar-->
+    <div> <!--This div is for nav bar **MAKE SURE TO UPDATE ALL PAGES-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container-fluid">
               <a class="navbar-brand text-dark" href="index.html">Cajun Currency Converter</a>
-              <button
+              <!--not sure what this button is for-->
+              <button 
                 class="navbar-toggler"
                 type="button"
                 data-mdb-toggle="collapse"
@@ -54,11 +56,15 @@
 
     </div>
 
-    <div > <!--Div for image/logo-->
-    <img src="Currency_Crawfish.png" class="img-fluid" alt="Crawfish with money" style="width: 250px; height: 250px;">
+
+    
+    <div class=""> <!--Div for image/logo-->
+    <a href="index.html"><img src="Currency_Crawfish.png" class="img-fluid" alt="Crawfish with money" style="width: 250px; height: 250px;"></a>
     </div>
 
     <h1 class="text-center">Cajun Currency Converter</h1>
+    <!--need to adjust image location, either center it  -->
+    
 
     <div name="converter" class="container mx-auto p-2"> <!--this div is for the entire converter(input, country select, and output)-->
 
@@ -74,7 +80,7 @@
             </select>
         </div>
 
-        <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert to-->
+        <div class="mx-auto p-3 "> <!--this div is for the selection of the currency to convert to-->
             To Country/Currency:
             <select name="country_currency" class="form-select select2" id="dropdown2">
                 <!--<option>Select Country/Currency</option>    need to populate with array-->
