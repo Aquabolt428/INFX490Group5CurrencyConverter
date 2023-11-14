@@ -21,3 +21,17 @@ button{
     display: block;
     margin-top: 1em;
 }
+
+td{
+    text-align: center;
+    border: solid 2px red;
+    padding: 5px;
+    
+}
+
+th{
+    text-align: center;
+    border: solid 2px red; 
+    padding: 5px;
+     
+}

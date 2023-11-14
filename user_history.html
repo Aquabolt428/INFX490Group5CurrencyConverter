@@ -55,7 +55,7 @@
       <a href="index.html"><img src="Currency_Crawfish.png" class="img-fluid" alt="Crawfish with money" style="width: 250px; height: 250px;"></a>
     </div>
 
-    <h1 class="text-center">Cajun Currency Converter: User History</h1>
+    <h1 class="text-center">User History</h1>
 
     <!--Add feature to redirect to login page if no account logged in-->
 
@@ -67,18 +67,18 @@
                 <table id="table">
                     <colgroup>
                         <!-- Give each col a percnatage of table space-->
-                        <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 20%;">
-                        <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 20%;">
+                        <col span="1" style="width: 15%;" class="border border-danger ">
+                        <col span="1" style="width: 20%;" class="border border-danger ">
+                        <col span="1" style="width: 15%;" class="border border-danger ">
+                        <col span="1" style="width: 15%;" class="border border-danger ">
+                        <col span="1" style="width: 15%;" class="border border-danger ">    
+                        <col span="1" style="width: 20%;" class="border border-danger ">
                      </colgroup>
-                    <tr class="header">
-                        <!-- This is the tope of Table-->
+                    <tr class="header text">
+                        <!-- This is the top of Table-->
                         <th>Start Currency</th>
                         <th>Amount Converted</th>
-                        <th>Symbol Section</th>
+                        <th></th>
                         <th>End Currency</th>
                         <th>Final Amount</th>
                         <th>Date Converted</th>
@@ -150,7 +150,7 @@
         tr.setAttribute("id","row");
         var table = document.getElementById("table")
 
-        var startCurrency = document.createElement("td");
+        var startCurrency = document.createElement("td");  //need to add the bootstrap classes from the example data
         var amountToConVert = document.createElement("td");
         var symbol = document.createElement("td");
         var finalCurrency = document.createElement("td");
@@ -179,7 +179,7 @@
 
 
       }catch{
-       console.log("FUCK")
+       console.log("FUCK") //need to remove this
       }
     }
   }
