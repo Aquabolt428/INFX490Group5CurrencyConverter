@@ -66,11 +66,11 @@
     <!--need to adjust image location, either center it  -->
     
 
-    <div name="converter" class="container mx-auto p-2"> <!--this div is for the entire converter(input, country select, and output)-->
+    <div name="converter" class="container mx-auto p-5"> <!--this div is for the entire converter(input, country select, and output)-->
 
         <div name="input-textbox" class="text-center"> <!--this div is for the amount to convert, need to validate input to number(possibly change input type to number and only allow whole numbers)-->
             Input amount:
-            <input type="number" name="input-amount" step="0.01" placeholder="0.00" id="numToCon">
+            <input class="input-group-lg" type="number" name="input-amount" step="0.01" placeholder="0.00" id="numToCon">
         </div>
 
         <div class="mx-auto p-3"> <!--this div is for the selection of the currency to convert from-->
@@ -87,18 +87,18 @@
             </select>
         </div>
 
-        <div class="d-grid gap-2 col-6 mx-auto p-3"><!--div for convert button-->
+        <div class="d-grid gap-2 col-6 mx-auto p-1"><!--div for convert button-->
 
         <input class="btn btn-danger btn-lg" type="submit" value="Convert" onclick="gettingExchange(); return false;"> <!--btn-danger is to make button red--></input>
 
         </div>
 
-        <div class="text-center mx-auto p-5"><!--div to display converted amount, users cannot enter values-->
+        <div class="text-center mx-auto p-3"><!--div to display converted amount, users cannot enter values-->
             Converted Amount:
             <input type="text" name="output-textbox" placeholder="0.00" id="convertedBox" disabled>
         </div>
 
-        <div class="d-grid gap-2 col-6 mx-auto p-3">
+        <div class="d-grid gap-2 col-6 mx-auto p-1">
             <button class="btn btn-danger btn-lg" onclick="gettingExchange();"> <!--btn-danger is to make button red-->
                 Clear 
             </button>
