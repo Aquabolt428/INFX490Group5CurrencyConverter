@@ -71,9 +71,10 @@
 <!--  </select>-->
 <div class="text-center mx-auto p-3">
   <label for="currency">Select Currency:</label>
-  <select id="currency" name="currency"></select>
+  <select id="currency"  class="form-select select2" name="currency"></select>
+  <button id="updateButton">Update</button>
 
-  <!-- script to handle currency dropdown -->
+  <!-- script to handle currency dropdown --> 
   <script>
     async function fillList() {
       // Check if the sessionStorage variable exists
@@ -84,8 +85,7 @@
 
       // Replace this URL with the actual API endpoint
       try {
-        const apiUrl = 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange' +
-                '?fields=country_currency_desc&filter=record_date:gte:2023-09-15'; // Replace with the actual API URL
+        const apiUrl = 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange?fields=country_currency_desc,currency&page[size]=167&filter=record_date:gte:2023-09-15' // Replace with the actual API URL
 
         // Make a GET request to the external API
         const response = await fetch(apiUrl, {method: 'GET'});
@@ -93,7 +93,8 @@
           // Return the data from the API response
           const data = await response.json();
           const countryNames = data.data.map(item => item.country_currency_desc);
-          return countryNames;
+          const currencyName = data.data.map(item => item.currency);
+          return [countryNames, currencyName];
         } else {
           throw new Error('Failed to fetch data from the API');
         }
@@ -105,7 +106,11 @@
 
       //function to populate dropdowns
       async function popDropdown() {
-        const elmts = await fillList();
+        const countryCurrencyLists = await fillList();
+
+        var elmts = countryCurrencyLists[0]
+        var elmtsCur = countryCurrencyLists[1]
+
         const naira = ["Nigeria-Naira"];
 
         // Populate the dropdown with the single option
@@ -143,12 +148,14 @@
 
     // adding event listeners for different user actions from the dropdowns
     const currencyDropdown = document.getElementById("currency");
+    const updateButton = document.getElementById("updateButton");
     const startDateInput = document.getElementById("start-date");
     const endDateInput = document.getElementById("end-date");
 
     // currency dropdown
-    currencyDropdown.addEventListener("change", function () {
+    updateButton.addEventListener("click", function () {
           const selectedCurrency = currencyDropdown.value;
+          console.log(selectedCurrency + "bang bang bang")
           setup(selectedCurrency, startDateInput.value, endDateInput.value);
           console.log(`Selected Currency: ${selectedCurrency}`);
     });
@@ -207,6 +214,7 @@
     }
 
     async function getData(countryCurrency,start_date,end_date) {
+      console.log(countryCurrency + "bang ")
       let filter = `country_currency_desc:eq:${countryCurrency}`
       if(start_date){
         filter = filter+`,record_date:gte:${start_date}`
@@ -218,6 +226,7 @@
                     "filter": `${filter}`,
                     "sort": "record_date"}
       let queryString = new URLSearchParams(query);
+
       api_url = `https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange?${queryString}`
       const response = await fetch(api_url, {method: 'GET'});
       const data = await response.json();
@@ -230,6 +239,13 @@
       return {date, exchange_rate};
     }
   </script>
+  <style>
+    #currency {
+        font-size: 12px; /* You can adjust the font size to make it smaller */
+        padding: 5px;    /* You can adjust the padding to control the size */
+        width: 350px;    /* You can adjust the width to control the size */
+    }
+</style>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
