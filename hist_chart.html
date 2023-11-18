@@ -156,6 +156,8 @@
     updateButton.addEventListener("click", function () {
           const selectedCurrency = currencyDropdown.value;
           console.log(selectedCurrency + "bang bang bang")
+          //This is for the prediction side of things
+          makePrediction(selectedCurrency)
           setup(selectedCurrency, startDateInput.value, endDateInput.value);
           console.log(`Selected Currency: ${selectedCurrency}`);
     });
@@ -212,6 +214,39 @@
       myChart.update();
 
     }
+    //prediction being made 
+    async function makePrediction(selectedCurrency){
+      console.log(countryCurrency + "bang ")
+      let filter = `country_currency_desc:eq:${countryCurrency}`
+      const query = {"fields": "record_date,exchange_rate",
+                    "filter": `${filter}`,
+                    "sort": "record_date"}
+      let queryString = new URLSearchParams(query);
+
+      api_url = `https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange?${queryString}`
+      const response = await fetch(api_url, {method: 'GET'});
+      const data = await response.json();
+      const date = [];
+      const exchange_rate = [];
+      data.data.forEach(row => {
+        exchange_rate.push(row.exchange_rate);
+      })
+      var sum = exchange_rate.reduce(function (total, current) {
+      return total + current;}, 0);
+      
+      const avg = sum/exchange_rate.length
+      //grab how far in the future you want it to be. When user selects it
+      const howFar = 7 
+      const prediction = 0
+      for(var i = 0;i < howFar;i++){
+        prediction = 9
+      }
+
+      return {date, exchange_rate};
+    }
+
+
+
 
     async function getData(countryCurrency,start_date,end_date) {
       console.log(countryCurrency + "bang ")
