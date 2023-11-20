@@ -68,6 +68,7 @@
 
     <div name="converter" class="container mx-auto p-5"> <!--this div is for the entire converter(input, country select, and output)-->
 
+        <form action="">
         <div name="input-textbox" class="text-center"> <!--this div is for the amount to convert, need to validate input to number(possibly change input type to number and only allow whole numbers)-->
             Input amount:
             <input class="input-group-lg" type="number" name="input-amount" step="0.01" placeholder="0.00" id="numToCon">
@@ -99,10 +100,12 @@
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto p-1">
-            <button class="btn btn-danger btn-lg" onclick="gettingExchange();"> <!--btn-danger is to make button red-->
+            <button class="btn btn-danger btn-lg" onclick="window.location.reload()"> <!--btn-danger is to make button red-->
                 Clear 
             </button>
         </div>
+    </form>
+
         
 
         <!--<div class="d-grid gap-2 col-6 mx-auto p-3">  **save button not needed because conversion is automatically saved
@@ -154,8 +157,7 @@
         console.error(error);
         return [];
     }
-}
-       
+}      
 
      //make this array be populated from api
 
