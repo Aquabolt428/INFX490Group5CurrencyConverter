@@ -72,8 +72,9 @@
 <div class="text-center mx-auto p-3">
   <label for="currency">Select Currency:</label>
   <select id="currency"  class="form-select select2" name="currency"></select>
-  <button id="updateButton">Update</button>
-
+  <div>
+  <button id="updateButton" class="btn btn-danger btn-lg">Update</button>
+  </div>
   <!-- script to handle currency dropdown --> 
   <script>
     async function fillList() {
@@ -126,7 +127,7 @@
       }
   </script>
 
-  <br><br>
+  
 
   <label for="start-date">Start Date:</label>
   <input type="date" id="start-date" name="start-date">
