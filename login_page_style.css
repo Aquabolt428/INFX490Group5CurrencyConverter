@@ -29,12 +29,7 @@ td, th{
     
 }
 
-th{
-    text-align: center;
-    border: solid 2px red; 
-    padding: 5px;
-     
-}
+
 
 body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
