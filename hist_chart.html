@@ -15,6 +15,8 @@
 
 <body onload="popDropdown(); return false" class="bg-light-subtle">
 
+  <button onclick="gettingPrediction()">Test</button>
+
 
   <div> <!--This div is for nav bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
@@ -237,11 +239,6 @@
       
       const avg = sum/exchange_rate.length
       //grab how far in the future you want it to be. When user selects it
-      const howFar = 7 
-      const prediction = 0
-      for(var i = 0;i < howFar;i++){
-        prediction = 9
-      }
 
       return {date, exchange_rate};
     }
@@ -274,6 +271,58 @@
       })
       return {date, exchange_rate};
     }
+
+    //prediction
+    function calculateAverageChange(data) {
+      let sumOfDifferences = 0;
+
+      for (let i = 1; i < data.length; i++) {
+        const difference = data[i] - data[i - 1];
+        sumOfDifferences += difference;
+      }
+
+      const averageChange = sumOfDifferences / (data.length - 1);
+      return averageChange;
+      }
+
+    function multiplyDataPoints(mostRecentEchangeRate, averageChange, time) {
+      const newData = 0
+      mostRecentEchangeRate = parseFloat(mostRecentEchangeRate)
+      averageChange =  parseFloat(averageChange)
+
+      for (let i = 0; i < time; i++) {
+        mostRecentEchangeRate = mostRecentEchangeRate + averageChange
+      }
+
+      return mostRecentEchangeRate;
+    }
+    
+    async function gettingPrediction(){
+      // Example data points
+      //fetch data
+      //const data = [10, 15, 20, 25, 30];
+      const url = api_url = `https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange?fields=exchange_rate,record_date&filter=country_currency_desc:eq:Burundi-Franc&sort=-record_date`
+      const response = await fetch(url)
+      const data = await response.json();
+      const exchange_rate = [];
+      data.data.forEach(row => {
+        exchange_rate.push(row.exchange_rate);
+      })
+      const mostRecentEchangeRate = exchange_rate[0]
+
+      // Calculate average change
+      const avgChange = calculateAverageChange(exchange_rate);
+
+      // Multiply each data point by a number (e.g., 2)
+      const timeBetween = 2;
+      const newData = multiplyDataPoints(mostRecentEchangeRate,avgChange, timeBetween).toFixed(2);
+
+      // Display results
+      console.log(`Average Change: ${avgChange.toFixed(2)}`);
+      console.log(`Original Data Points: ${exchange_rate[0]}`);
+      console.log(`New Data Points: ${newData}`);
+    }
+
   </script>
   <style>
     #currency {
