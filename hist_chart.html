@@ -129,15 +129,34 @@
       }
   </script>
 
+<div class="flex-container">
+  <div class="side-by-side">
+    <label for="start-date">Start Date:</label>
+    <input type="date" id="start-date" name="start-date">
+  </div>
+  
+  <div clasd="side-by-side">
+    <label for="end-date">End Date:</label>
+    <input type="date" id="end-date" name="end-date">
+  </div>
+</div>
+
+<style>
+  .flex-container {
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+}
+
+.side-by-side {
+  margin: 0 10px; /* Add space between items horizontally */
+  /* Additional styles for individual divs, if needed */
+}
   
 
-  <label for="start-date">Start Date:</label>
-  <input type="date" id="start-date" name="start-date">
 
-  <br><br>
+</style>
 
-  <label for="end-date">End Date:</label>
-  <input type="date" id="end-date" name="end-date">
 </div>
   <div>
     <canvas class="m-5 p-1" id="myChart" width=300" height="100"></canvas>
