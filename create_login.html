@@ -102,11 +102,17 @@
     const password = document.getElementById('Password').value;
     const confirmPassword = document.getElementById('confirmPassword').value; 
 
+    const userNameNoWhite = userName.trim().toLowerCase()
+    const emailNoWhtite = email.trim().toLowerCase()
+    const passwordNoWhite = password.trim();
+    const confirmPasswordNoWhite = confirmPassword.trim()
+
+
     if(password === confirmPassword){
       const data = {
-        userName: userName,
-        email: email,
-        password: password
+        userName: userNameNoWhite,
+        email: emailNoWhtite,
+        password: passwordNoWhite
             };
         const url = 'http://localhost:3030/storingUser';
 
@@ -118,13 +124,13 @@
         },
         body: JSON.stringify(data), // Convert data to JSON format
         });
-        console.log(response)
+        
+        const thing = await response.json();
 
         if(response.ok){
-          alert('User successfully inserted.')
           window.location.href = 'login_page.html';
         }else{
-          alert(response.error);
+          alert(thing.error);
         }
     }else{
       alert("Passwords Do NOT MATCH")

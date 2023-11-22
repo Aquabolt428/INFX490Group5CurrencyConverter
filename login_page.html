@@ -99,11 +99,13 @@
         try {
             const userName = document.getElementById('login-username').value;
             const passwordAttempt= document.getElementById('login-password').value;
+            const lowerName = userName.trim().toLowerCase();
+            const passwordAttemptNoWhite = passwordAttempt.trim();
 
             // Create a data object with the userName and passwordAttempt
             const data = {
-            userName: userName,
-            passwordAttempt: passwordAttempt,
+            userName: lowerName,
+            passwordAttempt: passwordAttemptNoWhite,
             };
 
             // Define the URL of the login endpoint
@@ -119,15 +121,15 @@
             });
 
             console.log(response)
+            const responseData = await response.json()
 
             if (response.ok) {
-            const responseData = await response.json(); // Parse the JSON response
+             // Parse the JSON response
             // Handle the response data here
-            alert(responseData.message)
             sessionStorage.setItem('id', responseData.id);
             window.location.href = 'index.html';
             } else {
-            alert("Login Failed");
+            alert(responseData.message)
             throw new Error('Login failed'); // Handle the error as needed
             }
         } catch (error) {
