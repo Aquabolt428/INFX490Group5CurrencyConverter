@@ -138,8 +138,8 @@
 
       //const historyKeys = Object.keys(previousExchangeRates).reverse();
 
-      for(const history in prevoiusExchangeRates){
-        const thisIteration = prevoiusExchangeRates[history]
+      for(let i = prevoiusExchangeRates.length - 1; i >= 0; i--){
+        const thisIteration = prevoiusExchangeRates[i]
 
         var tr = document.createElement("tr");
         tr.setAttribute("id","row");
