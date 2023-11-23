@@ -60,51 +60,46 @@
     <!--Add feature to redirect to login page if no account logged in-->
 
 
-    <div> <!--be able to pull from database and us js to build multiple html elements to display-->
-        <fieldset>
-            <legend id="legend"></legend>
-            <section class="AR">
-                <table id="table" class="table table-striped table-hover">
-                    <colgroup>
-                        <!-- Give each col a percnatage of table space-->
-                        <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 20%;">
-                        <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 15%;">    
-                        <col span="1" style="width: 20%;">
-                     </colgroup>
-                    <tr class="header text">
-                        <!-- This is the top of Table-->
-                        <th>Start Currency</th>
-                        <th>Amount Converted</th>
-                        <th></th>
-                        <th>End Currency</th>
-                        <th>Final Amount</th>
-                        <th>Date Converted</th>
-                    </tr>
-                    <!--tr id="row"-->
-                      <!-- Next table row. -->
-                      <!--td>USD</td>
-                      <td>500000</td>
-                      <td><i class="fa-solid fa-right-long fa-2xl" style="color: #000000;"></i></td>
-                      <td>Canada Dollar</td>
-                      <td>5</td>
-                      <td>1-3-2023</td>
+    <style>
+      .custom-table-container {
+          width: 70%; /* Set the width of the container div */
+          margin: auto; /* Center the container horizontally */
+      }
+  
+      fieldset {
+          width: 100%; /* Set the width of the fieldset to 100% of its containing element */
+      }
+  
+      #table {
+          width: 100%; /* Set the width of the table to 100% of its containing element */
+      }
+  </style>
+  
+  <div class="custom-table-container">
+      <fieldset>
+          <legend id="legend"></legend>
+          <section class="AR">
+              <table id="table" class="table table-striped table-hover">
+                  <colgroup>
+                      <col span="1" style="width: 20%;">
+                      <col span="1" style="width: 20%;">
+                      <col span="1" style="width: 20%;">
+                      <col span="1" style="width: 20%;">    
+                      <col span="1" style="width: 20%;">
+                  </colgroup>
+                  <tr class="header text">
+                      <th>Start Currency</th>
+                      <th>Amount Converted</th>
+                      <th>End Currency</th>
+                      <th>Final Amount</th>
+                      <th>Date Converted</th>
                   </tr>
-                  <tr id="row"-->
-                    <!-- Next table row. -->
-                    <!--td>USD</td>
-                    <td>500000</td>
-                    <td><i class="fa-solid fa-right-long fa-2xl" style="color: #000000;"></i></td>
-                    <td>Canada Dollar</td>
-                    <td>5</td>
-                    <td>1-3-2023</td>
-                </tr-->
-                </table>
-            </section>
-        </fieldset>
-    </div>
+                  <!-- Add your table rows here -->
+              </table>
+          </section>
+      </fieldset>
+  </div>
+  
 
 
     
@@ -152,21 +147,18 @@
 
         var startCurrency = document.createElement("td");  //need to add the bootstrap classes from the example data
         var amountToConVert = document.createElement("td");
-        var symbol = document.createElement("td");
         var finalCurrency = document.createElement("td");
         var finalAmount = document.createElement("td");
         var date = document.createElement("td");
 
         startCurrency.innerText = thisIteration.firstCurrencyName
         amountToConVert.innerText = thisIteration.usAmount
-        symbol.innerText = "putSymbol"
         finalCurrency.innerText = thisIteration.currencyName
         finalAmount.innerText = thisIteration.fAmount
         date.innerText = thisIteration.when
 
         tr.appendChild(startCurrency)
         tr.appendChild(amountToConVert)
-        tr.appendChild(symbol)
         tr.appendChild(finalCurrency)
         tr.appendChild(finalAmount)
         tr.appendChild(date)
