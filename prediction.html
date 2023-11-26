@@ -152,6 +152,10 @@
     }
 } 
     async function popDropdown() {
+        const today = new Date().toISOString().split('T')[0];
+  
+        // Set the minimum date for the input
+        document.getElementById('end-date').setAttribute('min', today);
         const countryCurrencyLists = await fillList();
 
         var elmts = countryCurrencyLists[0]
