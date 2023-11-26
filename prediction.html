@@ -1,0 +1,265 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="login_page_style.css" rel="stylesheet">
+    <title>Predictions</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</head>
+
+<body onload="popDropdown(); return false">
+    <div> <!--This div is for nav bar **MAKE SURE TO UPDATE ALL PAGES-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html">Cajun Currency Converter</a>
+              <!--not sure what this button is for or where it is-->
+              <button 
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i class="fas fa-bars"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link"  href="index.html">Converter</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="create_login.html">Create Account</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="login_page.html">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="user_history.html">User History</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="hist_chart.html">Historical Currency Trends</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </div>
+
+    <div class=""> <!--Div for image/logo-->
+        <a href="index.html"><img src="Currency_Crawfish.png" class="img-fluid" alt="Crawfish with money" style="width: 250px; height: 250px;"></a>
+    </div>
+
+    <h1 class="text-center">Prediction</h1>
+
+    <form action="">
+        <div name="input-textbox" class="text-center"> <!--this div is for the amount to convert, need to validate input to number(possibly change input type to number and only allow whole numbers)-->
+            <label for="numToCon">Input Amount</label>
+            <input class="input-group-lg" type="number" name="input-amount" step="0.01" placeholder="0.00" id="numToCon">
+        </div>
+
+        <div class="side-by-side">
+            <label for="start-date">Future Date</label>
+            <input type="date" id="end-date" name="end-date">
+        </div>
+        <style>
+            .side-by-side {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+        </style>
+
+        <div class="mx-auto p-3 text-center"> <!--this div is for the selection of the currency to convert from-->
+            <label for="dropdown1"></label>
+            <select name="country_currency" class="form-select select2" id="dropdown1" >
+            <!--need to populate with array-->
+            </select>
+        </div>
+
+        <div class="side-by-side">
+        <button onclick="gettingPrediction(); return false" >Make Prediction</button>
+        </div>
+    </form>
+    
+    <div class="center-container">
+        <label for="prediction">Predicted Value</label>
+        <p id="prediction">Boom</p>
+    </div>
+    <style>
+        /* Center the content of the container */
+        .center-container {
+          text-align: center;
+        }
+      </style>
+
+
+
+
+
+</body>
+
+<script>
+    async function fillList(){
+        // Check if the sessionStorage variable exists
+        if (sessionStorage.getItem('id') === null) {
+        // If it doesn't exist, set it to a default value
+        sessionStorage.setItem('id', 0);
+    }
+
+// Now you can access the value, which is either the existing value or the default value
+    var myValue = sessionStorage.getItem('id');
+    console.log(myValue);
+
+    // Replace this URL with the actual API endpoint
+    const apiUrl = 'http://localhost:3030/apiCallGettingCurrency';
+    try {
+        const response = await fetch(apiUrl);
+        if (response.ok) {
+            const data = await response.json();
+            const countryNames = data.data.map(item => item.country_currency_desc);
+            const currencyNames = data.data.map(item => item.currency);
+            
+
+            return [countryNames, currencyNames]; // Assuming the API returns an array of elements
+        } else {
+            throw new Error('Failed to fetch data from the API');
+        }
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+} 
+    async function popDropdown() {
+        const countryCurrencyLists = await fillList();
+
+        var elmts = countryCurrencyLists[0]
+        var elmtsCur = countryCurrencyLists[1]
+
+
+        const US = ["UNITED STATES-DOLLAR"];
+
+        // Populate the dropdown with the single option
+        $('#dropdown1').append($('<option></option>').val(US).html(US));
+        
+    
+
+        $.each(elmts, function (i, p){
+            $('#dropdown1').append($('<option></option>').val(elmtsCur[i]).html(p));
+        });
+        
+        $(document).ready(function() {
+    $('.select2').select2();
+    });     
+    }
+
+
+    async function gettingPrediction(){
+      // Example data points
+      //fetch data
+      //const data = [10, 15, 20, 25, 30];
+      const countrySelected = document.getElementById('dropdown1')
+      const amountToConVert = document.getElementById('numToCon')
+      const pElement = document.getElementById('prediction')
+
+      const countryValue = countrySelected.value
+      const amount = amountToConVert.value
+
+
+      const url = api_url = `https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange?fields=exchange_rate,record_date&filter=currency:eq:${countryValue}&sort=-record_date`
+      const response = await fetch(url)
+      const data = await response.json();
+      console.log(data)
+      const exchange_rate = [];
+      data.data.forEach(row => {
+        exchange_rate.push(row.exchange_rate);
+      })
+      const mostRecentEchangeRate = exchange_rate[0]
+
+      // Calculate average change
+      const avgChange = calculateAverageChange(exchange_rate);
+
+      // Multiply each data point by a number (e.g., 2)
+      const timeBetween = timeInBetween();
+      const newData = multiplyDataPoints(mostRecentEchangeRate,avgChange, timeBetween).toFixed(2);
+
+      // Display results
+      console.log(`Average Change: ${avgChange.toFixed(2)}`);
+      console.log(`Original Data Points: ${exchange_rate[0]}`);
+      console.log(`New Data Points: ${newData}`);
+
+      pElement.textContent = newData
+
+    }
+    function multiplyDataPoints(mostRecentEchangeRate, averageChange, time) {
+      const newData = 0
+      mostRecentEchangeRate = parseFloat(mostRecentEchangeRate)
+      averageChange =  parseFloat(averageChange)
+
+      for (let i = 0; i < time; i++) {
+        mostRecentEchangeRate = mostRecentEchangeRate + averageChange
+      }
+
+      return mostRecentEchangeRate;
+    }
+    function calculateAverageChange(data) {
+      let sumOfDifferences = 0;
+
+      for (let i = 1; i < data.length; i++) {
+        const difference = data[i] - data[i - 1];
+        sumOfDifferences += difference;
+      }
+
+      const averageChange = sumOfDifferences / (data.length - 1);
+      return averageChange;
+      }
+
+    function timeInBetween() {
+    // Get the input element with the id 'end-date'
+    const endDateInput = document.getElementById('end-date');
+
+    // Get the value entered by the user (assuming it's a valid date format)
+    const endDateValue = endDateInput.value;
+
+    // Create a Date object using the entered value
+    const endDate = new Date(endDateValue);
+
+    // Get the current date
+    const currentDate = new Date();
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = endDate - currentDate;
+
+    // Convert the time difference to months
+    const monthsDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24 * 30.44));
+
+    // Display the result or perform further operations
+    console.log(`Months between ${endDateValue} and today: ${monthsDifference}`);
+    
+    // Return the result if needed
+    return monthsDifference;
+}
+
+
+    
+
+
+
+
+
+
+</script>
+
+</html>
