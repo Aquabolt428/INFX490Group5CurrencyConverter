@@ -104,8 +104,8 @@
     </form>
     
     <div class="center-container">
-        <label for="prediction">Predicted Value</label>
-        <p id="prediction">Boom</p>
+        <label for="prediction" hidden="true" id="predLabel">Predicted Value</label>
+        <p id="prediction"></p>
     </div>
     <style>
         /* Center the content of the container */
@@ -158,10 +158,10 @@
         var elmtsCur = countryCurrencyLists[1]
 
 
-        const US = ["UNITED STATES-DOLLAR"];
+        //const US = ["UNITED STATES-DOLLAR"];
 
         // Populate the dropdown with the single option
-        $('#dropdown1').append($('<option></option>').val(US).html(US));
+        //$('#dropdown1').append($('<option></option>').val(US).html(US));
         
     
 
@@ -182,6 +182,9 @@
       const countrySelected = document.getElementById('dropdown1')
       const amountToConVert = document.getElementById('numToCon')
       const pElement = document.getElementById('prediction')
+      const predictLable = document.getElementById('predLabel')
+
+      predictLable.hidden = false
 
       const countryValue = countrySelected.value
       const amount = amountToConVert.value
