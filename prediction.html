@@ -113,11 +113,6 @@
           text-align: center;
         }
       </style>
-
-
-
-
-
 </body>
 
 <script>
@@ -184,7 +179,8 @@
       //fetch data
       //const data = [10, 15, 20, 25, 30];
       const countrySelected = document.getElementById('dropdown1')
-      const amountToConVert = document.getElementById('numToCon')
+      const amountToConVert = document.getElementById('numToCon').value
+
       const pElement = document.getElementById('prediction')
       const predictLable = document.getElementById('predLabel')
 
@@ -209,7 +205,7 @@
 
       // Multiply each data point by a number (e.g., 2)
       const timeBetween = timeInBetween();
-      const newData = multiplyDataPoints(mostRecentEchangeRate,avgChange, timeBetween).toFixed(2);
+      const newData = multiplyDataPoints(mostRecentEchangeRate,avgChange, timeBetween,amountToConVert).toFixed(2);
 
       // Display results
       console.log(`Average Change: ${avgChange.toFixed(2)}`);
@@ -219,9 +215,10 @@
       pElement.textContent = newData
 
     }
-    function multiplyDataPoints(mostRecentEchangeRate, averageChange, time) {
+    function multiplyDataPoints(mostRecentEchangeRate, averageChange, time,money) {
       const newData = 0
       mostRecentEchangeRate = parseFloat(mostRecentEchangeRate)
+      mostRecentEchangeRate = mostRecentEchangeRate * money
       averageChange =  parseFloat(averageChange)
 
       for (let i = 0; i < time; i++) {
