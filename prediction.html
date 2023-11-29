@@ -217,16 +217,21 @@
     }
     function multiplyDataPoints(mostRecentEchangeRate, averageChange, time,money) {
       const newData = 0
+
       mostRecentEchangeRate = parseFloat(mostRecentEchangeRate)
-      mostRecentEchangeRate = mostRecentEchangeRate * money
       averageChange =  parseFloat(averageChange)
 
       for (let i = 0; i < time; i++) {
         mostRecentEchangeRate = mostRecentEchangeRate + averageChange
       }
 
+      console.log( " changed rate " + mostRecentEchangeRate)
+
+      mostRecentEchangeRate = mostRecentEchangeRate * money
+
       return mostRecentEchangeRate;
     }
+
     function calculateAverageChange(data) {
       let sumOfDifferences = 0;
 
