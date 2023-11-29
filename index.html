@@ -13,20 +13,10 @@
 
 
 <body onload="popDropdown(); return false" class="bg-light-subtle">
-    <div> <!--This div is for nav bar **MAKE SURE TO UPDATE ALL PAGES-->
+    <div> <!--This div is for nav bar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container-fluid">
               <a class="navbar-brand" href="index.html">Cajun Currency Converter</a>
-              <!--not sure what this button is for or where it is-->
-              <button 
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
                 <i class="fas fa-bars"></i>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
@@ -53,8 +43,6 @@
               </div>
             </div>
           </nav>
-
-
     </div>
 
 
@@ -67,7 +55,7 @@
     <!--need to adjust image location, either center it  -->
     
 
-    <div name="converter" class="container mx-auto p-5"> <!--this div is for the entire converter(input, country select, and output)-->
+    <div name="converter" class="container"> <!--this div is for the entire converter(input, country select, and output)-->
 
         <form action="">
         <div name="input-textbox" class="text-center"> <!--this div is for the amount to convert, need to validate input to number(possibly change input type to number and only allow whole numbers)-->
