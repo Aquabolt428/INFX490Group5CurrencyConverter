@@ -34,3 +34,27 @@ button{
 body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+
+
+
+h2 {
+    
+    font-weight: bold;
+}
+
+
+
+.degree {
+    font-weight: bold;
+    font-size: 90%;
+}
+
+.concentration {
+    font-weight: bold;
+    font-size: 60%;
+}
+
+.member {
+    margin-bottom: 30px;
+}
