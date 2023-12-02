@@ -85,13 +85,15 @@
           <section class="AR">
               <table id="table" class="table table-striped table-hover">
                   <colgroup>
-                      <col span="1" style="width: 20%;">
-                      <col span="1" style="width: 20%;">
-                      <col span="1" style="width: 20%;">
-                      <col span="1" style="width: 20%;">    
-                      <col span="1" style="width: 20%;">
+                      <col span="1" style="width: 5%;">
+                      <col span="1" style="width: 19%;">
+                      <col span="1" style="width: 19%;">
+                      <col span="1" style="width: 19%;">
+                      <col span="1" style="width: 19%;">    
+                      <col span="1" style="width: 19%;">
                   </colgroup>
                   <tr class="header text">
+                      <th>Exchange Rate</th>
                       <th>Start Currency</th>
                       <th>Amount Converted</th>
                       <th>End Currency</th>
@@ -153,18 +155,21 @@
         tr.setAttribute("id","row");
         var table = document.getElementById("table")
 
+        var echangeRateCol = document.createElement('td');
         var startCurrency = document.createElement("td");  //need to add the bootstrap classes from the example data
         var amountToConVert = document.createElement("td");
         var finalCurrency = document.createElement("td");
         var finalAmount = document.createElement("td");
         var date = document.createElement("td");
 
+        echangeRateCol.innerText = thisIteration.exchange_rate
         startCurrency.innerText = thisIteration.firstCurrencyName
         amountToConVert.innerText = thisIteration.usAmount
         finalCurrency.innerText = thisIteration.currencyName
         finalAmount.innerText = thisIteration.fAmount
         date.innerText = thisIteration.when
 
+        tr.appendChild(echangeRateCol)
         tr.appendChild(startCurrency)
         tr.appendChild(amountToConVert)
         tr.appendChild(finalCurrency)
@@ -179,7 +184,7 @@
 
 
       }catch{
-       console.log("FUCK") //need to remove this
+        //need to remove this
       }
     }
   }
