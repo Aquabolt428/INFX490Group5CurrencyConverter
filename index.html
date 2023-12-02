@@ -167,11 +167,11 @@
     
 
         $.each(elmts, function (i, p){
-            $('#dropdown1').append($('<option></option>').val(elmtsCur[i]).html(p));
+            $('#dropdown1').append($('<option></option>').val(p).html(p));
         });
 
         $.each(elmts, function (i, p){
-            $('#dropdown2').append($('<option></option>').val(elmtsCur[i]).html(p));
+            $('#dropdown2').append($('<option></option>').val(p).html(p));
         });
         
         $(document).ready(function() {
@@ -199,7 +199,17 @@
         }
         else if(firstCountrySelected === "UNITED STATES-DOLLAR"){
             const url = "http://localhost:3030/exchangeRates?";
-            const finalURL = url +'currencies='+ valueToConvert + '&countries=' + secondCountrySelected + '&id='+ id;
+
+            let bangBang = `${secondCountrySelected}`
+
+
+
+            let filter = {"currencies": `${valueToConvert}`,
+                        "countries": `${bangBang}`,
+                        "id": `${id}`}
+            let finalQuery = new URLSearchParams(filter)
+
+            const finalURL = url + finalQuery;
             console.log(finalURL.trim());
         
             const response = await fetch(finalURL.trim());
@@ -214,7 +224,20 @@
             }
         else if(secondCountrySelected === "UNITED STATES-DOLLAR"){
                 const url = "http://localhost:3030/eachangeRatesToUS?";
-                const finalURL = url +'currencies='+ valueToConvert + '&countries=' + firstCountrySelected + '&id='+ id;
+
+
+                let bangBang = `${firstCountrySelected}`
+
+
+
+                let filter = {"currencies": `${valueToConvert}`,
+                "countries": `${bangBang}`,
+                "id": `${id}`}
+                let finalQuery = new URLSearchParams(filter)
+
+                const finalURL = url + finalQuery;
+
+            
                 console.log(finalURL.trim());
             
                 const response = await fetch(finalURL.trim());
@@ -229,7 +252,25 @@
             }
         else{
             const url = "http://localhost:3030/eachangeRatesRandom?";
-                const finalURL = url +'currencies='+ valueToConvert + '&countries=' + firstCountrySelected +"," + secondCountrySelected + '&id='+ id;
+
+            let bangBang1 =`${firstCountrySelected}`
+
+            let bangBang2 = `${secondCountrySelected}`
+
+            let countryList = [bangBang1, bangBang2];
+
+
+
+            let filter = {"currencies": `${valueToConvert}`,
+                        "countries": countryList,
+                        "id": `${id}`}
+            let finalQuery = new URLSearchParams(filter)
+
+            const finalURL = url + finalQuery;
+
+
+                
+                
                 console.log(finalURL.trim());
             
                 const response = await fetch(finalURL.trim());
